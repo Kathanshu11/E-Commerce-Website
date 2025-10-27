@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="navbar :: layout(~{::section})">
+<head>
+	<!-- BootStrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<!-- Font awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+	<title>Login Page</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<img src="/login.jpg" height="800px" />
+				</div>
+				<div class="col-md-6">
+					<div class="card my-5 px-5 py-5">
+						<h1 class="text-center text-dark  font-monospace text-decoration-underline"><i class="fa-solid fa-user"></i><br />Log In</h1>
+						<div th:if="${param.error}" class="text-center alert-danger">
+							<p th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></p>
+						</div>
+						<div th:if="${param.logout}" class="text-center alert-success">
+							Logout Succesfully
+						</div>
+						<form th:action="@{/login}" method="post">
+							<div class="my-4 ">
+								<label for="exampleInputEmail1" class="form-label">Email address</label>
+								<input type="email" name="username" class="form-control" id="exampleInputEmail1"
+									placeholder="abc@gmail.com">
+							</div>
+							<div class="my-4">
+								<label for="exampleInputPassword1" class="form-label">Create a password</label>
+								<input type="password" name="password" class="form-control" id="exampleInputPassword1"
+									placeholder="*******">
+							</div>
+							<input type="submit" value="Log In" class="btn btn-dark w-100 my-4">
+						</form>
+						<hr>
+						<div class="forgotPass-link my-3">
+							<a th:href="@{/forgotPassPage}">Frogot Password ?</a>
+						</div>
+						<div class="register-link my-2">
+							Don't have an account?
+							<a th:href="@{/regiPage}">Register here...</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- BootStrap JS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

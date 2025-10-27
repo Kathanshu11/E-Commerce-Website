@@ -1,0 +1,84 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="navbar :: layout(~{::section})">
+
+<head>
+	<title>Category</title>
+</head>
+
+<body>
+	<section>
+		<div class="container mt-5 mb-5" style="min-height: 80vh;">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header text-center bg-dark text-light">
+							<h2>Add Category</h2>
+							<div th:if="${msg}" style="color:rgb(0, 255, 64);">
+								<p th:text="${msg}"></p>
+							</div>
+							<div th:if="${errorMsg}" style="color:rgb(255, 0, 0);">
+								<p th:text="${errorMsg}"></p>
+							</div>
+						</div>
+						<div class="card-body py-5">
+							<form th:action="@{/Admin/subCate}" method="post" enctype="multipart/form-data">
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item">
+										<h4>Category Name</h4>
+										<input type="text" name="categoryName" required />
+									</li>
+									<li class="list-group-item">
+										<h4>Category Status</h4>
+										Active
+										<input type="radio" name="isActive" value="true" required />
+										Inactive
+										<input type="radio" name="isActive" value="false" />
+									</li>
+									<li class="list-group-item">
+										<h4>Category Image</h4>
+										<input type="file" name="categoryImg" required />
+									</li>
+									<li class="list-group-item">
+										<input class="btn btn-dark w-100" type="submit" value="Submit">
+									</li>
+								</ul>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="card py-5 px-5">
+						<table class="table table-bordered border-dark">
+							<thead>
+								<tr>
+									<th scope="col">S.no</th>
+									<th scope="col">Category</th>
+									<th scope="col">Status</th>
+									<th scope="col">Image</th>
+									<th scope="col">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="category, iterStat : ${categories}">
+									<th scope="row" th:text="${iterStat.count}"></th>
+									<td th:text="${category.categoryName}"></td>
+									<td th:text="${category.isActive} ? 'Active' : 'Inactive'"></td>
+									<td> <img th:src="@{'/CategoryImg/' + ${category.categoryImg}}" alt="Category Image"
+											style="width: 30px; height: 30px; object-fit: cover;" /></td>
+									<td>
+										<a th:href="@{/Admin/openEditCate/{id}(id=${category.id})}"
+											class="btn btn-primary btn-sm">Edit</a>
+
+										<a th:href="@{/Admin/dltCate/{id}(id=${category.id})}"
+											class="btn btn-danger btn-sm">Delete</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="navbar :: layout(~{::section})">
+
+<head>
+	<title>Login Page</title>
+</head>
+
+<body>
+	<section>
+		<div class="container mt-5 mb-5">
+			<div class="card py-5 px-5">
+				<h1 class="text-center  font-monospace text-decoration-underline text-primary">All Users</h1>
+				<div th:if="${success}" class="text-center" style="color:rgb(0, 255, 64); font-size: 20px;">
+								<p th:text="${success}"></p>
+							</div>
+							<div th:if="${Error}" clas style="color:rgb(255, 0, 0); font-size: 20px;">
+								<p th:text="${Error}"></p>
+							</div>
+							<table class="table">
+								<thead class="table table-primary table-striped">
+									<tr>
+										<th scope="col">Sr.no</th>
+										<th scope="col">Name</th>
+										<th scope="col">Email</th>
+										<th scope="col">Mobile</th>
+										<th scope="col">Address</th>
+										<th scope="col">Enabled</th>
+										<th scope="col">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="us, iterStat : ${users}">
+										<th scope="row" th:text="${iterStat.index + 1}"></th>
+										<td th:text="${us.name}"></td>
+										<td th:text="${us.email}"></td>
+										<td th:text="${us.mobile}"></td>
+
+										<td th:text="${us.address + us.city + us.pincode}"></td>
+
+										<td th:text="${us.isEnabled}"></td>
+										<td>
+											<a th:href="@{'/Admin/updateSts?status=true&id=' + ${us.id}}"
+												class="btn btn-primary btn-sm">Active</a>
+											<a th:href="@{'/Admin/updateSts?status=false&id=' + ${us.id}}"
+												class="btn btn-danger btn-sm">Inactive</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

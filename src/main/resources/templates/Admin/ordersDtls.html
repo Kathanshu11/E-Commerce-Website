@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="navbar :: layout(~{::section})">
+
+<head>
+	<title>All Orders - Admin</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+	<section>
+		<div class="container mt-4">
+			<h1 class="text-center text-primary font-monospace">All Orders</h1>
+
+			<form action="#" method="get">
+				<input type="search" name="order-search" class="form-label" placeholder="serach order id" /><button
+					type="submit" class="btn btn-primary btn-sm">Submit</button>
+			</form>
+
+			<table class="table table-bordered  table-hover mt-3">
+				<thead class="table-primary">
+					<tr>
+						<th>Order ID</th>
+						<th>Delivery Address</th>
+						<th>Order Date</th>
+						<th>Product Details</th>
+						<th>Quantity</th>
+						<th>Price</th>
+						<th>Total Amount</th>
+						<th>Status</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="order : ${orders}">
+						<td th:text="${order.orderId}"></td>
+						<td>
+							<span th:text="${order.orderAdd.firstName} + ' ' + ${order.orderAdd.lastName}"></span><br>
+							<span th:text="${order.orderAdd.address}"></span><br>
+							<span
+								th:text="${order.orderAdd.city} + ', ' + ${order.orderAdd.state} + ' - ' + ${order.orderAdd.pincode}"></span><br>
+							<span th:text="${order.orderAdd.mobileNo}"></span>
+						</td>
+						<td th:text="${#dates.format(order.orderDate, 'dd-MM-yyyy')}"></td>
+						<td th:text="${order.products.title}"></td>
+						<td th:text="${order.quantity}"></td>
+						<td th:text="${order.price}"></td>
+						<td th:text="${order.totalAmount}"></td>
+						<td th:text="${order.status}"></td>
+						<td>
+							<form th:action="@{/Admin/updateOrderStatus}" method="post">
+								<input type="hidden" name="orderId" th:value="${order.orderId}" />
+
+								<select class="form-select form-select-sm" name="statusId"
+									th:disabled="${#strings.equalsIgnoreCase(order.status, 'CANCELLED') or #strings.equalsIgnoreCase(order.status, 'DELIVERED')}">
+									<option value="">Select Order Status</option>
+									<option th:each="status : ${T(in.com.main.util.OrderStatus).values()}"
+										th:value="${status.id}" th:text="${status.name}"
+										th:selected="${order.status == status.name}">
+									</option>
+								</select>
+
+								<button type="submit" class="btn btn-primary btn-sm mt-2" th:disabled="${#strings.equalsIgnoreCase(order.status, 'Cancel') 
+								             or #strings.equalsIgnoreCase(order.status, 'Delivered')}"
+>
+									Update
+								</button>
+							</form>
+						</td>
+					</tr>
+					<tr th:if="${#lists.isEmpty(orders)}">
+						<td colspan="9" class="text-center">No orders found</td>
+					</tr>
+			</table>
+		</div>
+	</section>
+</body>
+
+</html>

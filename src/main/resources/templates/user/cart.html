@@ -1,0 +1,64 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="navbar :: layout(~{::section})">
+
+<head>
+	<title>Login Page</title>
+</head>
+
+<body>
+	<section>
+		<div class="container cart mt-5 mb-5" style="min-height: 70vh;">
+			<div th:if="${success}" class="text-center" style="color:rgb(0, 255, 64); font-size: 20px;">
+				<p th:text="${success}"></p>
+			</div>
+			<div th:if="${Error}" class style="color:rgb(255, 0, 0); font-size: 20px;">
+				<p th:text="${Error}"></p>
+			</div>
+			<table class="table">
+				<thead class="table table-dark table-bordered" >
+					<tr>
+						<th scope="col">Sr.no</th>
+						<th scope="col">Image</th>
+						<th scope="col">Product Name</th>
+						<th scope="col">Price</th>
+						<th scope="col">Quantity</th>
+						<th scope="col">Total Price</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="cart, iterStat : ${carts}">
+						<th scope="row" th:text="${iterStat.index + 1}"></th>
+						<td>
+							<img th:src="@{'/ProductImg/' + ${cart.product.imgName}}" alt="product Image"
+								style="width:50px; height:50px;" />
+						</td>
+
+						<td th:text="${cart.product.title}"></td>
+
+						<td th:text="${cart.product.discountPrice}"></td>
+						<td>
+							<a th:href="@{'/user/cart/decrement/' + ${cart.id}}"
+								class="btn btn-sm btn-outline-danger">-</a>
+							<span th:text="${cart.quantity}" class="mx-2"></span>
+							<a th:href="@{'/user/cart/increment/' + ${cart.id}}"
+								class="btn btn-sm btn-outline-success">+</a>
+						</td>
+						<td th:text="${cart.totalPrice}"></td>
+					</tr>
+					<tr>
+						<td colspan="4"></td>
+						<td class="fw-bold">Total Price</td>
+						<td th:text="'₹' + ${totalOrderAmt}"></td>
+					</tr>
+					
+					<tr>
+						<td colspan="5"></td>
+						<td> <a th:href="@{/user/pymt}" class="btn btn-success btn-sm">place Order</a></td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</section>
+</body>
+
+</html>

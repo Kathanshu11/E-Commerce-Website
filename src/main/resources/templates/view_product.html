@@ -1,0 +1,57 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="navbar :: layout(~{::section})">
+
+<head>
+	<title>View Page</title>
+</head>
+
+<body>
+	<section>
+		<div class="container mt-5 mb-5" style="min-height: 100vh;">
+			<div th:if="${succMsg}" class="alert alert-success" role="alert">
+				<span th:text="${succMsg}"></span>
+			</div>
+			<div th:if="${errorMsg}" class="alert alert-danger" role="alert">
+				<span th:text="${errorMsg}"></span>
+			</div>
+			<div class="row">
+				<div class="col-md-6" >
+					<div class="card py-5 px-5">
+						<img th:src="@{'/ProductImg/' + ${product.imgName}}" alt="Product Image"
+							class="img-fluid img-thumbnail" />
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="card py-5 px-5">
+						<h2 th:text="${product.title}" class="text-uppercase" style="font-weight: 900;"></h2>
+						<h4><b>Description:</b></h4>
+						<h4 th:text="${product.description}"></h4>
+						<h4>
+							₹ <span th:text="${product.discountPrice}" class="text-success"></span>
+							<span>(<span th:text="${product.discount}"></span><span>%off</span>)</span>
+							<small class="text-muted">
+								<del th:text="${product.price}" class="text-danger"></del>
+							</small>
+						</h4>
+						<th:block th:if="${product.stocks>0}">
+							<th:block th:if="${user==null}">
+								<a th:href="@{/signin}" class="btn btn-warning w-100 mb-4">Add to Cart</a>
+							</th:block>
+
+							<th:block th:unless="${user==null}">
+								<a th:href="@{/user/addCart(pid=${product.id}, uid=${user.id})}"
+									class="btn btn-warning w-100 mb-4">
+									Add to Cart
+								</a>
+							</th:block>
+						</th:block>
+						<th:block th:if="${product.stocks <= 0}">
+							<a href="#" class="btn btn-danger w-100 mb-4 disabled">Out of Stock</a>
+						</th:block>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

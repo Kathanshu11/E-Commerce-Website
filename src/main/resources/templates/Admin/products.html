@@ -1,0 +1,65 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="navbar :: layout(~{::section})">
+
+<head>
+	<title>ALL Products</title>
+</head>
+
+<body>
+	<section>
+		<div class="container mt-5 mb-5">
+			<div class="card py-5 px-5">
+				<h2 class="text-center text-primary font-monospace fs-1 text-uppercase">All Products</h2>
+				<div th:if="${success}" class="text-center" style="color:rgb(0, 255, 64); font-size: 20px;">
+								<p th:text="${success}"></p>
+							</div>
+							<div th:if="${Error}" clas style="color:rgb(255, 0, 0); font-size: 20px;">
+								<p th:text="${Error}"></p>
+							</div>
+							<table class="table">
+								<thead class="table table-primary table-striped">
+									<tr>
+										<th scope="col">Sr.no</th>
+										<th scope="col">Title</th>
+										<!-- <th scope="col">Description</th>  -->
+										<th scope="col">Category</th>
+										<th scope="col">Price</th>
+										<th scope="col">Stocks</th>
+										<th scope="col">Discount</th>
+										<th scope="col">Discount Price</th>
+										<th scope="col">Image</th>
+										<th scope="col">Status</th>
+										<th scope="col">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="prod, iterStat : ${product}">
+										<th scope="row" th:text="${iterStat.index + 1}"></th>
+										<td th:text="${prod.title}"></td>
+										<!-- <td th:text="${prod.description}"></td>  -->
+										<td th:text="${prod.category}"></td>
+										<td th:text="${prod.price}"></td>
+										<td th:text="${prod.stocks}"></td>											
+										<td th:text="${prod.discount}"></td>
+										<td th:text="${prod.discountPrice}"></td>
+										<td>
+											<img th:src="@{'/ProductImg/' + ${prod.imgName}}" alt="product Image"
+												style="width:50px; height:50px;" />
+										</td>
+										<td th:text="${prod.isActive}"></td>
+										<td>
+											<a th:href="@{/Admin/editProduct/{id}(id=${prod.id})}"
+												class="btn btn-primary btn-sm">Edit</a>
+											<a th:href="@{/Admin/dltProduct/{id}(id=${prod.id})}"
+												class="btn btn-danger btn-sm">Delete</a>
+											<a th:href="@{/Admin/editProduct/{id}(id=${prod.id})}"
+												class="btn btn-primary btn-sm">Discount</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

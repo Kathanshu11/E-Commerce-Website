@@ -1,0 +1,78 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="navbar :: layout(~{::section})">
+
+<head>
+	<title>ADD PRODUCTS</title>
+</head>
+
+<body>
+	<section>
+		<div class="container my-5">
+			<div class="card py-5 px-5">
+				<div th:if="${success}" class="alert alert-success" role="alert">
+					<span th:text="${success}"></span>
+				</div>
+				<div th:if="${failed}" class="alert alert-danger" role="alert">
+					<span th:text="${failed}"></span>
+				</div>
+				<h1 class="text-center text-primary font-monospace text-uppercase">Add Product</h1>
+				<form th:action="@{/Admin/subAddProduct}" method="post" enctype="multipart/form-data">
+					<div class="mb-3">
+						<label class="form-label" style="font-size: 20px;">Title :</label>
+						<input type="text" name="title" class="form-control" placeholder="Add Your Title Here">
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" style="font-size: 20px;">Description :</label>
+						<textarea type="text" name="description" class="form-control" placeholder="Description here"
+							rows="3"></textarea>
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" style="font-size: 20px;">Category :</label>
+						<select name="category" class="form-select" required>
+							<option value="">-- Select Category --</option>
+							<option th:each="cat : ${categories}" th:value="${cat.categoryName}"
+								th:text="${cat.categoryName}">
+							</option>
+
+						</select>
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" style="font-size: 20px;">Price :</label>
+						<input type="number" step="0.01" name="price" class="form-control">
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" style="font-size: 20px;">Stocks :</label>
+						<input type="number" name="stocks" class="form-control">
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" style="font-size: 20px;">Category Status :</label>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="isActive" id="active" value="true"
+								required>
+							<label class="form-check-label" for="active" style="font-size: 20px;">
+								Active
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="isActive" id="inactive" value="false">
+							<label class="form-check-label" for="inactive" style="font-size: 20px;">
+								Inactive
+							</label>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label class="form-label" style="font-size: 20px;">Product Image</label>
+						<input type="file" name="productImg" class="form-control">
+					</div>
+					<input type="submit" value="Submit" class="btn btn-primary w-100">
+				</form>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

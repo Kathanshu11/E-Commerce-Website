@@ -1,0 +1,75 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="navbar :: layout(~{::section})">
+
+<head>
+	<title>Login Page</title>
+</head>
+
+<body>
+	<section>
+	      <div class="container mt-5 mb-5 d-flex justify-content-center">
+	          <div class="col-md-6">
+
+	     
+	              <div class="card mx-auto">
+
+	     
+	                  <div class="card-header text-center bg-primary text-light">
+	                      <h2>Edit Category</h2>
+	                  </div>
+	                  <div class="text-center mt-2">
+	                      <div th:if="${success}"  style="color:rgb(0, 255, 64);">
+	                          <p th:text="${success}"></p>
+	                      </div>
+
+	                      <div th:if="${error}" style="color:rgb(255, 0, 0);">
+	                          <p th:text="${error}"></p>
+	                      </div>
+	                  </div>
+
+	                 
+	                  <div class="card-body">
+	                      <form th:action="@{/Admin/updateCate}" th:object="${category}" method="post" enctype="multipart/form-data">
+	                          <input type="hidden" th:field="*{id}" />
+	                          <ul class="list-group list-group-flush">
+
+	                              <li class="list-group-item">
+	                                  <h4>Category Name</h4>
+	                                  <input type="text" th:field="*{categoryName}" class="form-control" />
+	                              </li>
+
+	                              <li class="list-group-item">
+	                                  <h4>Category Status</h4>
+	                                  <div class="form-check form-check-inline">
+	                                      <input type="radio" th:field="*{isActive}" value="True" class="form-check-input" />
+	                                      <label class="form-check-label">Active</label>
+	                                  </div>
+	                                  <div class="form-check form-check-inline">
+	                                      <input type="radio" th:field="*{isActive}" value="False" class="form-check-input" />
+	                                      <label class="form-check-label">Inactive</label>
+	                                  </div>
+	                              </li>
+
+	                              <li class="list-group-item">
+	                                  <h4>Category Image</h4>
+	                                  <div class="text-center mb-2">
+	                                      <img th:if="${category.categoryImg != null}" 
+	                                           th:src="@{'/CategoryImg/' + ${category.categoryImg}}" 
+	                                           alt="Category Image" style="max-width:100px;" class="img-thumbnail"/>
+	                                  </div>
+	                                  <input type="file" th:field="*{categoryImg}" class="form-control" />
+	                              </li>
+
+	                              <li class="list-group-item text-center">
+	                                  <input class="btn btn-primary w-50" type="submit" value="Update">
+	                              </li>
+
+	                          </ul>
+	                      </form>
+	                  </div>
+	              </div> 
+	          </div>
+	      </div>
+	  </section>
+</body>
+
+</html>

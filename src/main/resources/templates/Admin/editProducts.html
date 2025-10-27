@@ -1,0 +1,90 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="navbar :: layout(~{::section})">
+
+<head>
+	<title>Edit Products</title>
+</head>
+
+<body>
+	<section>
+
+		<div class="container mt-5 mb-5">
+			<div class="card py-5 px-5">
+				<h1 class="text-center text-primary font-monospace fs-1">Edit Product</h1>
+				<form th:action="@{/Admin/updateProduct}" th:object="${editProduct}" method="post"
+								enctype="multipart/form-data">
+								<input type="hidden" th:field="*{id}" />
+
+
+								<div class="mb-3">
+									<label class="form-label">Title</label>
+									<input type="text" name="title" class="form-control" th:field="*{title}">
+								</div>
+
+								<div class="mb-3">
+									<label class="form-label">Description</label>
+									<input type="text" name="description" class="form-control" th:field="*{description}">
+								</div>
+
+								<div class="mb-3">
+									<label class="form-label">Category</label>
+									<select th:field="*{category}" class="form-select" required>
+										<option value="">-- Select Category --</option>
+										<option th:each="cat : ${categories}" th:value="${cat.categoryName}"
+											th:text="${cat.categoryName}">
+										</option>
+									</select>
+
+								</div>
+
+								<div class="mb-3">
+									<label class="form-label">Price</label>
+									<input type="number" step="0.01" name="price" class="form-control" th:field="*{price}">
+								</div>
+
+								<div class="mb-3">
+									<label class="form-label">Stocks</label>
+									<input type="number" name="stocks" class="form-control" th:field="*{stocks}" min="0" max="100"
+										placeholder="Enter discount %">
+								</div>
+
+								<div class="mb-3">
+									<label class="form-label">Discount</label>
+									<input type="number" name="discount" class="form-control" th:field="*{discount}">
+								</div>
+
+								<div class="mb-3">
+									<label class="form-label">Discount Price</label>
+									<input type="number" name="discountPrice" class="form-control" th:field="*{price}">
+								</div>
+
+								<div class="mb-3">
+									<label class="form-label">Category Status</label>
+									<div class="form-check form-check-inline">
+										<input type="radio" th:field="*{isActive}" value="True" id="statusActive"
+											class="form-check-input" required />
+										<label class="form-check-label" for="statusActive">Active</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input type="radio" th:field="*{isActive}" value="False" id="statusInactive"
+											class="form-check-input" />
+										<label class="form-check-label" for="statusInactive">Inactive</label>
+									</div>
+								</div>
+								<div class="mb-3">
+									<label class="form-label">Product Image</label>
+									<div class="text-center mb-2">
+
+										<img th:if="${editProduct.imgName != null}" th:src="@{'/ProductImg/' + ${editProduct.imgName}}"
+											alt="Product Image" style="max-width:100px;" class="img-thumbnail" />
+									</div>
+									<input type="file" name="productImg" class="form-control">
+								</div>
+
+								<input type="submit" value="Update" class="btn btn-primary">
+							</form>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>
