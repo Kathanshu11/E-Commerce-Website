@@ -42,57 +42,77 @@ Security Features
 application.properties
 server.port=8080
 
+    http://localhost:8080/
+
 # Database configuration using environment variables
 	spring.datasource.url=jdbc:mysql://localhost:3306/database name
 	spring.datasource.username=${DB_USERNAME}
 	spring.datasource.password=${DB_PASSWORD}
-	spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-
 	spring.jpa.hibernate.ddl-auto=update
 	spring.jpa.show-sql=true
-	spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+
+	spring.servlet.multipart.max-file-size=10MB
+	spring.servlet.multipart.max-request-size=10MB
+
+    spring.mail.host=smtp.gmail.com
+    spring.mail.username=yourgamil@gmail.com
+    spring.mail.password=yourpassword
+    spring.mail.port=number
+    spring.mail.properties.mail.smtp.auth=true
+    spring.mail.properties.mail.smtp.starttls.enable=true
+    spring.mail.properties.mail.smtp.starttls.required=true
+    spring.mail.properties.mail.smtp.ssl.trust=smtp.gmail.com
 
 #🧩 Dependencies (pom.xml)
-	<dependencies>
-  	<dependency>
+	                            
+    <dependencies>
+  	    <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>	
-<dependency>
+		</dependency>
+		
+       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-devtools</artifactId>
-  </dependency> 
-   <dependency>
+      </dependency> 
+	  
+     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
     </dependency>
-  <dependency>
+	
+    <dependency>
       <groupId>com.mysql</groupId>
       <artifactId>mysql-connector-j</artifactId>
       <scope>runtime</scope>
     </dependency>
-  <dependency>
+	
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-security</artifactId>
     </dependency>  
-<dependency>
-    <groupId>org.projectlombok</groupId>
-    <artifactId>lombok</artifactId>
-</dependency>
-   <dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-mail</artifactId>
-</dependency>
-<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-  </dependencies>
+	
+    <dependency>
+       <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-starter-mail</artifactId>
+    </dependency>
+	
+        <dependency>
+		   <groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-starter-test</artifactId>
+		  <scope>test</scope>
+	   </dependency>
+    </dependencies>
 
 
 
