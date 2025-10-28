@@ -14,7 +14,7 @@ The project uses Lombok to reduce boilerplate code and environment variables to 
 | Database   | MySQL                                  |
 | Utility    | Lombok                                 |
 | Build Tool | Maven                                  |
-| IDE        | Spring Tool Suite / IntelliJ / Eclipse |
+| IDE        | Spring Tool Suite / Eclipse            |	
 
 👤 User Roles
 🧑‍💼 Admin
@@ -48,8 +48,8 @@ server.port=8080
 	spring.jpa.show-sql=true
 	spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 
-    🧩 Dependencies (pom.xml)
-<dependencies>
+🧩 Dependencies (pom.xml)
+	<dependencies>
   	<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -57,51 +57,43 @@ server.port=8080
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		
+		</dependency>	
 <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-devtools</artifactId>
-  </dependency>
-    
+  </dependency> 
    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
     </dependency>
-
   <dependency>
       <groupId>com.mysql</groupId>
       <artifactId>mysql-connector-j</artifactId>
       <scope>runtime</scope>
     </dependency>
-    
   <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-security</artifactId>
-    </dependency>
-    
+    </dependency>  
 <dependency>
     <groupId>org.projectlombok</groupId>
     <artifactId>lombok</artifactId>
 </dependency>
-   
    <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-mail</artifactId>
 </dependency>
-    
 <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-    
   </dependencies>
 
 
 
     
-    Author
+Author
 Kathanshu Patil
 Linkdin:-https://www.linkedin.com/in/kathanshupatil01/
 Email:-kathanshupatil11@gmail.com
