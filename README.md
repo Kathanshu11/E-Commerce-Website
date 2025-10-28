@@ -1,11 +1,12 @@
-Project Overview :
+#Project Overview :
+
 This is a full-featured E-Commerce web application built with Spring Boot, Spring Security, Spring Data JPA, and MySQL.
 It supports role-based access control where:
 👉Admins can manage products and users.
 👉Customers can browse, view, and purchase products.
 The project uses Lombok to reduce boilerplate code and environment variables to protect sensitive information (like database credentials).
 
-⚙️ Tech Stack
+#⚙️ Tech Stack
 | Layer      | Technology                             |
 | ---------- | -------------------------------------- |
 | Backend    | Spring Boot                            |
@@ -16,11 +17,12 @@ The project uses Lombok to reduce boilerplate code and environment variables to 
 | Build Tool | Maven                                  |
 | IDE        | Spring Tool Suite / Eclipse            |	
 
-👤 User Roles
+#👤 User Roles
 🧑‍💼 Admin
 👉Add, update, or delete products
 👉Manage users and their activity
 👉View user orders and purchase history
+
 🧑‍💻 User
 👉Register and log in securely
 👉Browse and search products
@@ -34,7 +36,7 @@ Security Features
 👉Session-based authentication and logout
 👉Restricted access for admin-only endpoints
 
-⚙️ Application Configuration
+#⚙️ Application Configuration
 application.properties
 server.port=8080
 
@@ -48,7 +50,7 @@ server.port=8080
 	spring.jpa.show-sql=true
 	spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 
-🧩 Dependencies (pom.xml)
+#🧩 Dependencies (pom.xml)
 	<dependencies>
   	<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -93,11 +95,8 @@ server.port=8080
 
 
     
-Author
-
+#Author
 Kathanshu Patil
-
 Linkdin:-https://www.linkedin.com/in/kathanshupatil01/
-
 Email:-kathanshupatil11@gmail.com
 
