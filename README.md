@@ -7,6 +7,7 @@ It supports role-based access control where:
 The project uses Lombok to reduce boilerplate code and environment variables to protect sensitive information (like database credentials).
 
 #⚙️ Tech Stack
+
 | Layer      | Technology                             |
 | ---------- | -------------------------------------- |
 | Backend    | Spring Boot                            |
@@ -18,6 +19,7 @@ The project uses Lombok to reduce boilerplate code and environment variables to 
 | IDE        | Spring Tool Suite / Eclipse            |	
 
 #👤 User Roles
+
 🧑‍💼 Admin
 👉Add, update, or delete products
 👉Manage users and their activity
